@@ -1,1 +1,8 @@
 db.sqlite3
+
+# Caché de Python
+__pycache__/
+*.pyc
+
+# Archivos de Tailwind
+theme/static/css/dist/
