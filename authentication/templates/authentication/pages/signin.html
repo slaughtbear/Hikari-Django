@@ -1,0 +1,44 @@
+{% extends 'authentication/layouts/base.html' %}
+{% load static %}
+{% block content %}
+<section>
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-white"> <!-- L O G O --> 
+            <img class="w-8 h-8 mr-2" src="{% static 'hikari_logo.svg' %}" alt="logo">
+            Hikari    
+        </a>
+        <div class="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-slate-900 border-gray-700"> <!-- C A J A --> 
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white"> <!-- T í t u l o --> 
+                    Iniciar sesión
+                </h1>
+                {% if error %}
+                <div class="flex items-center justify-center mb-4"> <!-- E R R O R --> 
+                    <span class="inline-flex items-center justify-center text-center rounded-full bg-red-100 px-4 py-2 text-red-700">
+                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+                        </svg>
+                        <p class="whitespace-nowrap text-sm">{{ error }}</p>
+                    </span>
+                </div>
+                {% endif %}  
+                <form class="space-y-4 md:space-y-6" method="POST"> <!-- F O R M --> 
+                    {% csrf_token %} <!-- Token de Django para formularios -->
+                    <div> <!-- N O M B R E  D E  U S U A R I O --> 
+                        <label for="username" class="block mb-2 text-sm font-medium text-white">Nombre de usuario</label>
+                        <input type="text" name="username" id="username" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" placeholder="usuario123" required>
+                    </div>
+                    <div> <!-- C O N T R A S E Ñ A --> 
+                        <label for="password" class="block mb-2 text-sm font-medium text-white">Contraseña</label>
+                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500" required>
+                    </div>
+                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-blue-800">Iniciar sesión</button>
+                    <p class="text-sm font-light text-gray-400">
+                        ¿No tienes una cuenta? <a href="{% url 'signup' %}" class="font-medium text-blue-400 transition hover:underline hover:text-blue-500">Regístrate</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+  </section>
+{% endblock %}
