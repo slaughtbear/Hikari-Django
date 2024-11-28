@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'theme', # TailwindCSS app
     'django_browser_reload', # Recarga automática para páginas
     'authentication', # Autenticación de usuarios
+    'landing', # Landing Page
 ]
 
 TAILWIND_APP_NAME = 'theme'
